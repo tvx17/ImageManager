@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>wlh_main_window</class>
+ <widget class="QMainWindow" name="wlh_main_window">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>808</width>
+    <height>957</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="im_central_widget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QMdiArea" name="mdi_area"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="im_menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>808</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="mn_checks_2">
+    <property name="title">
+     <string>Programm</string>
+    </property>
+    <widget class="QMenu" name="submn_app_projects">
+     <property name="title">
+      <string>Projekte</string>
+     </property>
+    </widget>
+    <addaction name="act_mn_app_projectmanager"/>
+    <addaction name="separator"/>
+    <addaction name="submn_app_projects"/>
+    <addaction name="separator"/>
+    <addaction name="act_mn_project_app_settings"/>
+    <addaction name="separator"/>
+    <addaction name="act_mn_project_quit"/>
+   </widget>
+   <widget class="QMenu" name="mn_basics">
+    <property name="title">
+     <string>Grundlagen</string>
+    </property>
+    <addaction name="act_mn_tb_ReadImages_di"/>
+   </widget>
+   <widget class="QMenu" name="mn_checks">
+    <property name="title">
+     <string>Prüfungen</string>
+    </property>
+    <addaction name="act_mn_checks_clean_up_di"/>
+    <addaction name="act_mn_checks_hashes_di"/>
+    <addaction name="act_mn_checks_doublets_di"/>
+   </widget>
+   <widget class="QMenu" name="menuVerarbeitung">
+    <property name="title">
+     <string>Verarbeitung</string>
+    </property>
+    <addaction name="act_mn_processing_doublets"/>
+   </widget>
+   <widget class="QMenu" name="menuSortierung">
+    <property name="title">
+     <string>Sortierung</string>
+    </property>
+   </widget>
+   <addaction name="mn_checks_2"/>
+   <addaction name="mn_basics"/>
+   <addaction name="mn_checks"/>
+   <addaction name="menuVerarbeitung"/>
+   <addaction name="menuSortierung"/>
+  </widget>
+  <widget class="QStatusBar" name="sb_statusbar"/>
+  <action name="act_mn_project_app_settings">
+   <property name="text">
+    <string>Programmeinstellungen</string>
+   </property>
+  </action>
+  <action name="act_mn_project_quit">
+   <property name="text">
+    <string>Ende</string>
+   </property>
+  </action>
+  <action name="act_mn_tb_ReadImages_di">
+   <property name="text">
+    <string>Bilder einlesen</string>
+   </property>
+  </action>
+  <action name="act_mn_app_projectmanager">
+   <property name="text">
+    <string>Projektverwaltung</string>
+   </property>
+  </action>
+  <action name="act_mn_checks_clean_up_di">
+   <property name="text">
+    <string>Aufräumen</string>
+   </property>
+  </action>
+  <action name="act_mn_checks_doublets_di">
+   <property name="text">
+    <string>Auf Dubletten prüfen</string>
+   </property>
+  </action>
+  <action name="act_mn_checks_hashes_di">
+   <property name="text">
+    <string>Hashwerte prüfen</string>
+   </property>
+  </action>
+  <action name="act_mn_processing_doublets">
+   <property name="text">
+    <string>Dubletten</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

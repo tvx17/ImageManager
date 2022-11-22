@@ -1,0 +1,105 @@
+from PyQt6.QtWidgets import QDialog, QVBoxLayout, QLabel, QFormLayout, QLineEdit, QPushButton
+
+from WLHPy.gui import globals as gui_globals
+
+
+class Data:
+    class Definitions:
+        _fields = {
+            'authors_name': {'object_name': 'name', 'text': 'Dein Name', 'optional': False},
+            'pseudonym': {'object_name': 'pseudonym', 'text': 'Pseudonym', 'optional': True},
+            'shortcut': {'object_name': 'shortcut', 'text': 'Kürzel', 'optional': True},
+        }
+
+    class Dialog:
+        form = {}
+        dialog = {}
+
+
+class Actions:
+    pass
+
+class Dialog:
+    @staticmethod
+    def show():
+
+
+
+class Setup:
+    @staticmethod
+    def dialog():
+        pass
+
+    @staticmethod
+    def explaining_text(self):
+        _dialog['layout'].addWidget(QLabel("Es sieht so aus, als wenn Du WLH zum ersten Mal starten würdest."))
+        _dialog['layout'].addWidget(QLabel("Deshalb müssen wir ein paar Dinge einstellen."))
+
+
+_form_fields = {}
+
+_dialog = {}
+
+_field_definitions = {
+    'authors_name': {'object_name': 'name', 'text': 'Dein Name', 'optional': False},
+    'pseudonym': {'object_name': 'pseudonym', 'text': 'Pseudonym', 'optional': True},
+    'shortcut': {'object_name': 'shortcut', 'text': 'Kürzel', 'optional': True},
+}
+
+
+def _explaining_text():
+    global _dialog
+    _dialog['layout'].addWidget(QLabel("Es sieht so aus, als wenn Du WLH zum ersten Mal starten würdest."))
+    _dialog['layout'].addWidget(QLabel("Deshalb müssen wir ein paar Dinge einstellen."))
+
+
+def _form():
+    global _field_definitions, _form_fields
+    form_layout = QFormLayout()
+    for field in _field_definitions:
+        _form_fields[field] = QLineEdit()
+        _form_fields[field].setObjectName(_field_definitions[field]['object_name'])
+        _form_fields[field].editingFinished.connect(lambda: _text_has_changed())
+        if _field_definitions[field]['optional']:
+            _form_fields[field].setPlaceholderText('Kein Pflichtfeld')
+
+        form_layout.addRow(_field_definitions[field]['text'], _form_fields[field])
+
+    return form_layout
+
+
+def _text_has_changed():
+    global _form_fields, _field_definitions
+    enable_button = False
+    for field in _form_fields:
+        if _form_fields[field].text() != '' and not _field_definitions[field]['optional']:
+            enable_button = True
+
+    if enable_button:
+        _dialog['go_on_button'].setEnabled(True)
+
+
+def _get_inputs():
+    global _form_fields
+    values = [{field: _form_fields[field].text()} for field in _form_fields]
+    print(values)
+
+
+def show():
+    global _dialog
+
+    Setup.dialog()
+    _dialog['dialog'] = QDialog(gui_globals.window_reference)
+    _dialog['dialog'].setWindowTitle("WLH - Erster Start")
+    _dialog['go_on_button'] = QPushButton()
+    _dialog['go_on_button'].setText('Weiter')
+    _dialog['go_on_button'].setEnabled(False)
+    _dialog['go_on_button'].clicked.connect(lambda: _get_inputs())
+
+    _dialog['layout'] = QVBoxLayout()
+    _explaining_text()
+
+    _dialog['layout'].addLayout(_form())
+    _dialog['layout'].addWidget(_dialog['go_on_button'])
+    _dialog['dialog'].setLayout(_dialog['layout'])
+    _dialog['dialog'].exec()
